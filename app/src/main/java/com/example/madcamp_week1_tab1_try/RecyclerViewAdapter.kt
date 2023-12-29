@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.json.JSONArray
 import org.json.JSONObject
-import com.bumptech.glide.Glide
 
 class RecyclerViewAdapter(private val datas: JSONObject): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
     private val listStore = datas.getJSONArray("store_list")
@@ -32,13 +32,17 @@ class RecyclerViewAdapter(private val datas: JSONObject): RecyclerView.Adapter<R
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvStoreNm: TextView = view.findViewById(R.id.name)
         val tvStoreImg: ImageView = view.findViewById(R.id.img_url)
+        val tvStorePhone: TextView = view.findViewById(R.id.phone_Num)
 
         fun bind(listStore: JSONArray) {
             val iObj = listStore.getJSONObject("$position".toInt())
             val name = iObj.getString("name")
+            val phoneNum = iObj.getString("phone_num")
             var imgUrl = iObj.getString("image_url")
 
             tvStoreNm.text = name
+            tvStorePhone.text = phoneNum
+
             Glide.with(itemView)
                 .load("http:"+ imgUrl)
                 .circleCrop()
