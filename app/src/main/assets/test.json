@@ -1,0 +1,27 @@
+{
+  "code": 200,
+  "data": {
+    "store_list": [
+      {
+        "name": "김하진",
+        "image_url": "//images.unsplash.com/photo-1546874177-9e664107314e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+      },
+      {
+        "name": "김혀나뉴",
+        "image_url": "//images.unsplash.com/photo-1645023756214-ed5802f6cd25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+      },
+      {
+        "name": "김현서",
+        "image_url": "//images.unsplash.com/photo-1625899139925-57f71ba783b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1634&q=80"
+      },
+      {
+        "name": "ㅁ현거",
+        "image_url": "//images.unsplash.com/photo-1633265637677-3b467d86cad3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+      },
+      {
+        "name": "전주지점",
+        "image_url": "//images.unsplash.com/photo-1548115184-bc6544d06a58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+      }
+    ]
+  }
+}
