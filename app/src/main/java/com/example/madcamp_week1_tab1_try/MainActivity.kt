@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+//      setContentView(R.layout.fragment_a)
 
         //1.페이지 데이터를 업로드
         val list = listOf(FragmentA(), FragmentB(), FragmentC(), FragmentD())
