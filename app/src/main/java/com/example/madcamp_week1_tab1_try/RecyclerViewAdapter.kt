@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.json.JSONArray
@@ -44,9 +45,31 @@ class RecyclerViewAdapter(private val datas: JSONObject): RecyclerView.Adapter<R
             tvStorePhone.text = phoneNum
 
             Glide.with(itemView)
-                .load("http:"+ imgUrl)
+                .load(imgUrl)
                 .circleCrop()
                 .into(tvStoreImg)
         }
     }
 }
+
+//class RecyclerViewAdapter(private val items: ArrayList<UserData>): RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+//    override fun getItemCount(): Int {
+//        return items.count()
+//    }
+//
+//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+//        holder.name.text = items[position].name
+//        holder.phone_Num.text = items[position].phone_num
+//    }
+//
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+//        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+//        return RecyclerViewAdapter.ViewHolder(inflatedView)
+//    }
+//
+//    // 각 항목에 필요한 기능을 구현
+//    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//        val name = itemView.findViewById<TextView>(R.id.name)
+//        val phone_Num = itemView.findViewById<TextView>(R.id.phone_Num)
+//    }
+//}
