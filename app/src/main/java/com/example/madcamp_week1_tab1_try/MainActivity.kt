@@ -1,5 +1,6 @@
 package com.example.madcamp_week1_tab1_try
 
+import FragmentD
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
