@@ -1,64 +1,51 @@
 package com.example.madcamp_week1_tab1_try
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import com.example.madcamp_week1_tab1_try.databinding.FragmentBBinding
+import com.example.madcamp_week1_tab1_try.databinding.FragmentCBinding
 
-//
-//class FragmentB : Fragment() {
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_b, container, false)
-//    }
-//
-//}
 class FragmentB : Fragment() {
 
+    private lateinit var binding: FragmentBBinding
+    companion object {
+        private const val pick_image_request = 1
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_b, container, false)
+        binding = FragmentBBinding.inflate(inflater, container, false)
+        val rootView = binding.root
+        binding.galleryBtn1.setOnClickListener{openGallery()}
+
+        return rootView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val btn1 = view.findViewById<ImageView>(R.id.member_1)
-        val btn2 = view.findViewById<ImageView>(R.id.member_2)
-        val btn3 = view.findViewById<ImageView>(R.id.member_3)
-        val btn4 = view.findViewById<ImageView>(R.id.member_4)
-        val btn5 = view.findViewById<ImageView>(R.id.member_5)
-        val btn6 = view.findViewById<ImageView>(R.id.member_6)
-        val btn7 = view.findViewById<ImageView>(R.id.member_7)
-        val btn8 = view.findViewById<ImageView>(R.id.member_8)
-        val btn9 = view.findViewById<ImageView>(R.id.member_9)
-
-        setClickListener(btn1, "1")
-        setClickListener(btn2, "2")
-        setClickListener(btn3, "3")
-        setClickListener(btn4, "4")
-        setClickListener(btn5, "5")
-        setClickListener(btn6, "6")
-        setClickListener(btn7, "7")
-        setClickListener(btn8, "8")
-        setClickListener(btn9, "9")
+    private fun openGallery() {
+        val pickImageIntent = Intent(
+            Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
+        startActivityForResult(pickImageIntent, pick_image_request)
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-    private fun setClickListener(imageView: ImageView, data: String) {
-        imageView.setOnClickListener {
-            val intent = Intent(requireContext(), ImageInsideActivity::class.java)
-            intent.putExtra("data", data)
-            startActivity(intent)
+        if (requestCode == pick_image_request && resultCode == Activity.RESULT_OK) {
+            val selectedImageUri: Uri? = data?.data
+            if (selectedImageUri != null) {
+                (requireActivity() as? ImageUpdateListener)?.updateFragmentC(selectedImageUri)
+            }
         }
     }
+
+
 }
