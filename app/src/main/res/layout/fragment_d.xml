@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,24 +22,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="right|center_vertical">
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="이름/전화번호"
+                android:inputType="text"/>
             <ImageButton
-                android:id="@+id/plus"
-                android:src="@drawable/plus"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
-            <ImageButton
+                android:id="@+id/search_button"
                 android:src="@drawable/search"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginHorizontal="15dp"/>
+                android:layout_marginHorizontal="15dp"
+                style="?android:attr/borderlessButtonStyle"/>
         </LinearLayout>
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
         tools:listitem="@layout/item"
+        android:paddingTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/plus_button"
+        android:src="@drawable/contact_user_add_user_new_user_icon_250756"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        style="?android:attr/borderlessButtonStyle"/>
+
+</FrameLayout>
