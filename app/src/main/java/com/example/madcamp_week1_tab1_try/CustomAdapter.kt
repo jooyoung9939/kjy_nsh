@@ -4,45 +4,79 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
-class CustomAdapter(private val context: Context) : BaseAdapter() {
+class CustomAdapter(
+    private val context: Context,
+    private val onItemLongClickListener: (position: Int) -> Unit
+) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-    private val nameList = ArrayList<String>()
-    private val numList = ArrayList<String>()
+    private val itemList = ArrayList<Item>()
+    private var filteredItemList = ArrayList<Item>()
 
-    override fun getCount(): Int {
-        return nameList.size
-    }
-
-    override fun getItem(i: Int): Any? {
-        return null
-    }
-
-    override fun getItemId(i: Int): Long {
-        return 0
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameItem: TextView = itemView.findViewById(R.id.nameItem)
         val numItem: TextView = itemView.findViewById(R.id.numItem)
+    }
 
-        nameItem.text = nameList[position]
-        numItem.text = numList[position]
-        return itemView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemView = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
+        return ViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item: Item
+
+        if (filteredItemList.isEmpty()) {
+            item = itemList[position]
+        } else {
+            item = filteredItemList[position]
+        }
+
+        holder.nameItem.text = item.name
+        holder.numItem.text = item.num
+
+        holder.itemView.setOnLongClickListener {
+            onItemLongClickListener.invoke(holder.adapterPosition)
+            true
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return if (filteredItemList.isEmpty()) {
+            itemList.size
+        } else {
+            filteredItemList.size
+        }
+    }
+
+    fun filter(text: String) {
+        filteredItemList.clear()
+
+        if (text.isEmpty()) {
+            filteredItemList.addAll(itemList)
+        } else {
+            val searchText = text.toLowerCase()
+            for (item in itemList) {
+                if (item.name.toLowerCase().contains(searchText) || item.num.toLowerCase().contains(searchText)) {
+                    filteredItemList.add(item)
+                }
+            }
+        }
+
+        notifyDataSetChanged()
     }
 
     fun addItem(name: String, num: String) {
-        nameList.add(name)
-        numList.add(num)
+        itemList.add(Item(name, num))
         notifyDataSetChanged()
     }
 
     fun removeItem(position: Int) {
-        nameList.removeAt(position)
-        numList.removeAt(position)
+        itemList.removeAt(position)
         notifyDataSetChanged()
     }
+
+    data class Item(val name: String, val num: String)
 }
