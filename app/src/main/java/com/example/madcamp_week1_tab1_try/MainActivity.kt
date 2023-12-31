@@ -3,45 +3,59 @@ package com.example.madcamp_week1_tab1_try
 import FragmentD
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.madcamp_week1_tab1_try.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import org.json.JSONObject
+import android.net.Uri
+import androidx.viewpager2.widget.ViewPager2
 
-class MainActivity : AppCompatActivity() {
-    //private lateinit var binding: ActivityMainBinding
-    val binding by lazy {ActivityMainBinding.inflate(layoutInflater)}
+class MainActivity : AppCompatActivity(), ImageUpdateListener {
+    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
+    private var currentFragment: Fragment? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-//      setContentView(R.layout.fragment_a)
 
-        //1.페이지 데이터를 업로드
+        // 페이지 데이터 로드
         val list = listOf(FragmentA(), FragmentB(), FragmentC(), FragmentD())
-        //2. 아답터를 생성
+
+        // 아답터 생성 및 연결
         val pagerAdapter = FragmentPagerAdapter(list, this)
-        //3. 아답터와 뷰페이저 연결
         binding.viewPager.adapter = pagerAdapter
 
-        //4. 탭 메뉴의 개수만큼 제목을 목록으로 생성
+        // 탭 메뉴 제목 설정
         val titles = listOf("A", "B", "C", "D")
 
-        //5. 탬레이아웃과 뷰페이저 연결
-        TabLayoutMediator(binding.tabLayout, binding.viewPager){tab, position ->
-            tab.text = titles.get(position)
+        // 탭 레이아웃과 뷰페이저 연결
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = titles[position]
         }.attach()
+
+        // 현재 활성화된 프래그먼트 추적
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                currentFragment = list[position]
+            }
+        })
     }
-class FragmentPagerAdapter(val fragmentList:List<Fragment>, fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity){
-    override fun getItemCount() = fragmentList.size
 
-    override fun createFragment(position: Int) = fragmentList.get(position)
+    override fun updateFragmentC(imageUri: Uri) {
+        // 현재 활성화된 프래그먼트가 FragmentC인 경우에만 이미지 업데이트 수행
+        (currentFragment as? FragmentC)?.updateImage(imageUri)
+    }
 
+    class FragmentPagerAdapter(
+        private val fragmentList: List<Fragment>,
+        fragmentActivity: AppCompatActivity
+    ) : FragmentStateAdapter(fragmentActivity) {
+        override fun getItemCount() = fragmentList.size
+        override fun createFragment(position: Int) = fragmentList[position]
+    }
 }
+
+interface ImageUpdateListener {
+    fun updateFragmentC(imageUri: Uri)
 }
-
-

@@ -42,7 +42,9 @@ class FragmentC : Fragment() {
 
         return rootView
     }
-
+    fun updateImage(imageUri: Uri) {
+        gAdapter.addImage(imageUri)
+    }
     private fun showLargeImageDialog(position: Int) {
         val dialogView = View.inflate(requireContext(), R.layout.dialog, null)
         val dlg = AlertDialog.Builder(requireContext())
