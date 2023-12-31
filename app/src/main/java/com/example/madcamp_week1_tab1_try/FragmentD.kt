@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.madcamp_week1_tab1_try.CustomAdapter
 import com.example.madcamp_week1_tab1_try.R
 
+
 class FragmentD : Fragment() {
 
     private lateinit var customAdapter: CustomAdapter
@@ -26,7 +27,7 @@ class FragmentD : Fragment() {
         customAdapter = CustomAdapter(requireContext())
         list.adapter = customAdapter
 
-        val plusButton: AppCompatImageButton = view.findViewById(R.id.plus)
+        val plusButton: AppCompatImageButton = view.findViewById(R.id.plus_button)
         plusButton.setOnClickListener {
             val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.custom_dialog)
@@ -39,7 +40,6 @@ class FragmentD : Fragment() {
                 customAdapter.addItem(name.text.toString(), num.text.toString())
                 dialog.dismiss()
             }
-
             dialog.show()
         }
 
