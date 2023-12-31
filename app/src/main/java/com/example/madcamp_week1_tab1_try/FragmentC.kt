@@ -76,27 +76,27 @@ class FragmentC : Fragment() {
     inner class MyGridAdapter(private val context: Context) : BaseAdapter() {
 
         val picID = mutableListOf<Uri>(
-            resourceIDtoUri(context, R.drawable.member_1),
-            resourceIDtoUri(context, R.drawable.member_2),
-            resourceIDtoUri(context, R.drawable.member_3),
-            resourceIDtoUri(context, R.drawable.member_4),
-            resourceIDtoUri(context, R.drawable.member_5),
-            resourceIDtoUri(context, R.drawable.member_6),
-            resourceIDtoUri(context, R.drawable.member_7),
-            resourceIDtoUri(context, R.drawable.member_1),
-            resourceIDtoUri(context, R.drawable.member_2),
-            resourceIDtoUri(context, R.drawable.member_3),
-            resourceIDtoUri(context, R.drawable.member_4),
-            resourceIDtoUri(context, R.drawable.member_5),
-            resourceIDtoUri(context, R.drawable.member_6),
-            resourceIDtoUri(context, R.drawable.member_7),
-            resourceIDtoUri(context, R.drawable.member_1),
-            resourceIDtoUri(context, R.drawable.member_2),
-            resourceIDtoUri(context, R.drawable.member_3),
-            resourceIDtoUri(context, R.drawable.member_4),
-            resourceIDtoUri(context, R.drawable.member_5),
-            resourceIDtoUri(context, R.drawable.member_6),
-            resourceIDtoUri(context, R.drawable.member_7),
+            resourceIDtoUri(context, R.drawable.doggy_1),
+            resourceIDtoUri(context, R.drawable.doggy_2),
+            resourceIDtoUri(context, R.drawable.doggy_3),
+            resourceIDtoUri(context, R.drawable.doggy_4),
+            resourceIDtoUri(context, R.drawable.doggy_5),
+            resourceIDtoUri(context, R.drawable.doggy_6),
+            resourceIDtoUri(context, R.drawable.doggy_7),
+            resourceIDtoUri(context, R.drawable.doggy_1),
+            resourceIDtoUri(context, R.drawable.doggy_2),
+            resourceIDtoUri(context, R.drawable.doggy_3),
+            resourceIDtoUri(context, R.drawable.doggy_4),
+            resourceIDtoUri(context, R.drawable.doggy_5),
+            resourceIDtoUri(context, R.drawable.doggy_6),
+            resourceIDtoUri(context, R.drawable.doggy_7),
+            resourceIDtoUri(context, R.drawable.doggy_1),
+            resourceIDtoUri(context, R.drawable.doggy_2),
+            resourceIDtoUri(context, R.drawable.doggy_3),
+            resourceIDtoUri(context, R.drawable.doggy_4),
+            resourceIDtoUri(context, R.drawable.doggy_5),
+            resourceIDtoUri(context, R.drawable.doggy_6),
+            resourceIDtoUri(context, R.drawable.doggy_7)
     )
 
         private fun resourceIDtoUri(context: Context, resourceId: Int): Uri {
@@ -118,7 +118,7 @@ class FragmentC : Fragment() {
         override fun getView(i: Int, view: View?, viewGroup: ViewGroup?): View {
             val imageView = ImageView(context)
             imageView.layoutParams = ViewGroup.LayoutParams(400, 300)
-            imageView.scaleType = ImageView.ScaleType.FIT_CENTER
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
             imageView.setPadding(5, 5, 5, 5)
 
             //imageView.setImageURI(picID[i])
