@@ -6,17 +6,20 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.madcamp_week1_tab1_try.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import android.net.Uri
 import androidx.viewpager2.widget.ViewPager2
+import androidx.lifecycle.ViewModelProvider
 
-class MainActivity : AppCompatActivity(), ImageUpdateListener {
-    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
+class MainActivity : AppCompatActivity(){
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var currentFragment: Fragment? = null
+    private lateinit var viewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        // ViewModelProvider를 사용하여 ViewModel 인스턴스 생성
+        viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         // 페이지 데이터 로드
         val list = listOf(FragmentA(), FragmentB(), FragmentC(), FragmentD())
@@ -40,12 +43,6 @@ class MainActivity : AppCompatActivity(), ImageUpdateListener {
             }
         })
     }
-
-    override fun updateFragmentC(imageUri: Uri) {
-        // 현재 활성화된 프래그먼트가 FragmentC인 경우에만 이미지 업데이트 수행
-        (currentFragment as? FragmentC)?.updateImage(imageUri)
-    }
-
     class FragmentPagerAdapter(
         private val fragmentList: List<Fragment>,
         fragmentActivity: AppCompatActivity
@@ -53,8 +50,4 @@ class MainActivity : AppCompatActivity(), ImageUpdateListener {
         override fun getItemCount() = fragmentList.size
         override fun createFragment(position: Int) = fragmentList[position]
     }
-}
-
-interface ImageUpdateListener {
-    fun updateFragmentC(imageUri: Uri)
 }
