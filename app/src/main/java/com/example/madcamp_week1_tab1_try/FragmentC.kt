@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -31,11 +32,11 @@ class FragmentC : Fragment() {
         binding.gridView.setOnItemClickListener { _, _, position, _ ->
             showLargeImageDialog(position)
         }
-        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         // Observe changes in selectedImageUri
-        viewModel.selectedImage.observe(viewLifecycleOwner) { imageUri ->
-            if (imageUri != null) {
-                gAdapter.addImage(imageUri)
+        viewModel.contactInfo.observe(viewLifecycleOwner) { contactInfo ->
+            if (contactInfo != null) {
+                gAdapter.addImage(contactInfo)
             }
         }
         return rootView
@@ -45,7 +46,13 @@ class FragmentC : Fragment() {
         val dialogView = View.inflate(requireContext(), R.layout.dialog, null)
         val dlg = AlertDialog.Builder(requireContext())
         val ivPic = dialogView.findViewById<ImageView>(R.id.ivPic)
-        ivPic.setImageURI(gAdapter.picID[position])
+        ivPic.setImageURI(gAdapter.picID[position].imageUri)
+
+        val tvName = dialogView.findViewById<TextView>(R.id.tvName)
+        val tvPhoneNumber = dialogView.findViewById<TextView>(R.id.tvPhoneNumber)
+        tvName.text = gAdapter.picID[position].name
+        tvPhoneNumber.text = gAdapter.picID[position].phoneNumber
+
         dlg.setTitle("큰 이미지")
         dlg.setIcon(R.drawable.ic_launcher)
         dlg.setView(dialogView)
@@ -54,29 +61,11 @@ class FragmentC : Fragment() {
     }
     inner class MyGridAdapter(private val context: Context) : BaseAdapter() {
 
-        val picID = mutableListOf<Uri>(
-            resourceIDtoUri(context, R.drawable.doggy_1),
-            resourceIDtoUri(context, R.drawable.doggy_2),
-            resourceIDtoUri(context, R.drawable.doggy_3),
-            resourceIDtoUri(context, R.drawable.doggy_4),
-            resourceIDtoUri(context, R.drawable.doggy_5),
-            resourceIDtoUri(context, R.drawable.doggy_6),
-            resourceIDtoUri(context, R.drawable.doggy_7),
-            resourceIDtoUri(context, R.drawable.doggy_1),
-            resourceIDtoUri(context, R.drawable.doggy_2),
-            resourceIDtoUri(context, R.drawable.doggy_3),
-            resourceIDtoUri(context, R.drawable.doggy_4),
-            resourceIDtoUri(context, R.drawable.doggy_5),
-            resourceIDtoUri(context, R.drawable.doggy_6),
-            resourceIDtoUri(context, R.drawable.doggy_7),
-            resourceIDtoUri(context, R.drawable.doggy_1),
-            resourceIDtoUri(context, R.drawable.doggy_2),
-            resourceIDtoUri(context, R.drawable.doggy_3),
-            resourceIDtoUri(context, R.drawable.doggy_4),
-            resourceIDtoUri(context, R.drawable.doggy_5),
-            resourceIDtoUri(context, R.drawable.doggy_6),
-            resourceIDtoUri(context, R.drawable.doggy_7)
-        )
+        val picID = ArrayList<ContactInfo>().apply {
+        add(ContactInfo("남승훈","1234",resourceIDtoUri(context, R.drawable.doggy_1)))
+        add(ContactInfo("남승훈","1234",resourceIDtoUri(context, R.drawable.doggy_1)))
+        add(ContactInfo("남승훈","1234",resourceIDtoUri(context, R.drawable.doggy_1)))
+        }
 
         private fun resourceIDtoUri(context: Context, resourceId: Int): Uri {
             return Uri.parse("android.resource://" + context.packageName + "/" + resourceId)
@@ -101,13 +90,13 @@ class FragmentC : Fragment() {
             imageView.setPadding(5, 5, 5, 5)
 
             Glide.with(this@FragmentC)
-                .load(picID[i])
+                .load(picID[i].imageUri)
                 .into(imageView)
 
             return imageView
         }
-        fun addImage(imageUri: Uri?){
-            imageUri?.let{
+        fun addImage(contact: ContactInfo?){
+            contact?.let{
                 picID.add(it)
             }
             notifyDataSetChanged()

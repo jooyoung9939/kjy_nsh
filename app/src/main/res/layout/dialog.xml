@@ -2,12 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 <!--    갤러리에서 클릭한 이미지가 이 곳에서 크게 보임-->
     <ImageView
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:id="@+id/ivPic"/>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvPhoneNumber"/>
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -21,6 +22,7 @@ class FragmentD : Fragment() {
     private lateinit var customAdapter: CustomAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchEditText: EditText
+    private lateinit var viewModel: SharedViewModel
 
     private var selectedProfile: CustomAdapter.Item? = null
 
@@ -30,7 +32,7 @@ class FragmentD : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_d, container, false)
-
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -69,24 +71,29 @@ class FragmentD : Fragment() {
                 // 필요한 경우 처리
             }
         })
-
-        val plusButton: AppCompatImageButton = view.findViewById(R.id.plus_button)
-        plusButton.setOnClickListener {
-            val dialog = Dialog(requireContext())
-            dialog.setContentView(R.layout.custom_dialog)
-
-            val name: EditText = dialog.findViewById(R.id.name)
-            val num: EditText = dialog.findViewById(R.id.num)
-
-            val closeButton: Button = dialog.findViewById(R.id.btnAdd)
-            closeButton.setOnClickListener {
-                customAdapter.addItem(name.text.toString(), num.text.toString())
-                val searchText = searchEditText.text.toString()
-                customAdapter.filter(searchText)
-                dialog.dismiss()
+        viewModel.contactInfo.observe(viewLifecycleOwner) { contactInfo ->
+            if (contactInfo != null) {
+                customAdapter.addItem(contactInfo.name, contactInfo.phoneNumber)
+                customAdapter.setFilteredItemList(customAdapter.itemList)
             }
-            dialog.show()
         }
+//        val plusButton: AppCompatImageButton = view.findViewById(R.id.plus_button)
+//        plusButton.setOnClickListener {
+//            val dialog = Dialog(requireContext())
+//            dialog.setContentView(R.layout.custom_dialog)
+//
+//            val name: EditText = dialog.findViewById(R.id.name)
+//            val num: EditText = dialog.findViewById(R.id.num)
+//
+//            val closeButton: Button = dialog.findViewById(R.id.btnAdd)
+//            closeButton.setOnClickListener {
+//                customAdapter.addItem(name.text.toString(), num.text.toString())
+//                val searchText = searchEditText.text.toString()
+//                customAdapter.filter(searchText)
+//                dialog.dismiss()
+//            }
+//            dialog.show()
+//        }
 
         return view
     }
