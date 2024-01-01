@@ -1,16 +1,27 @@
 package com.example.madcamp_week1_tab1_try
 
+import android.app.Activity
+import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.example.madcamp_week1_tab1_try.databinding.FragmentBBinding
 
 class ResultFragment : Fragment() {
 
     companion object {
+        private const val pick_image_request = 1
         private const val ARG_TOTAL_SCORE = "totalScore"
 
         fun newInstance(totalScore: Int): ResultFragment {
@@ -22,9 +33,12 @@ class ResultFragment : Fragment() {
         }
     }
 
+    private lateinit var viewModel: SharedViewModel
+
     private lateinit var resultTextView: TextView
     private lateinit var scoreTextView: TextView
     private lateinit var backButton: Button
+    private lateinit var adoptButton: Button
     var totalScore = arguments?.getInt(ARG_TOTAL_SCORE, 0) ?: 0
 
     override fun onCreateView(
@@ -32,21 +46,31 @@ class ResultFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView: View
+
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+
         totalScore = arguments?.getInt(ARG_TOTAL_SCORE, 0) ?: 0
         if (totalScore >= 60) {
             rootView = inflater.inflate(R.layout.fragment_result_success, container, false)
+            initializeViews(rootView)
+            displayResult()
+            setListeners()
         } else {
             rootView = inflater.inflate(R.layout.fragment_result_fault, container, false)
+            initializeViews1(rootView)
+            displayResult()
+            setListeners1()
         }
-
-        initializeViews(rootView)
-        displayResult()
-        setListeners()
-
         return rootView
     }
 
     private fun initializeViews(view: View) {
+        resultTextView = view.findViewById(R.id.resultTextView)
+        scoreTextView = view.findViewById(R.id.scoreTextView)
+        adoptButton = view.findViewById(R.id.adoptButton)
+    }
+
+    private fun initializeViews1(view: View) {
         resultTextView = view.findViewById(R.id.resultTextView)
         scoreTextView = view.findViewById(R.id.scoreTextView)
         backButton = view.findViewById(R.id.backButton)
@@ -60,6 +84,51 @@ class ResultFragment : Fragment() {
     }
 
     private fun setListeners() {
+        adoptButton.setOnClickListener{
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.adopt_dialog)
+
+            val name: EditText = dialog.findViewById(R.id.name1)
+            val num: EditText = dialog.findViewById(R.id.num1)
+
+            val gallery_btn: Button = dialog.findViewById(R.id.galleryBtn2)
+
+            gallery_btn.setOnClickListener{
+                openGallery()
+            }
+            dialog.show()
+        }
+    }
+
+    private fun openGallery() {
+        val pickImageIntent = Intent(
+            Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
+        startActivityForResult(pickImageIntent, pick_image_request)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == pick_image_request && resultCode == Activity.RESULT_OK) {
+            val selectedImageUri: Uri? = data?.data
+
+            val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.adopt_dialog, null)
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(dialogView)
+
+            val imageView: ImageView = dialog.findViewById(R.id.dogImage)
+
+            Glide.with(dialog.context)
+                .load(selectedImageUri)
+                .into(imageView)
+
+            dialog.show()
+        }
+    }
+
+    private fun setListeners1() {
         backButton.setOnClickListener {
             resetScoreAndNavigateToFragmentB()
         }
