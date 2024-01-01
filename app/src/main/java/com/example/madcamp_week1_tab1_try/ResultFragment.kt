@@ -131,6 +131,7 @@ class ResultFragment : Fragment() {
 
             val imageView: ImageView = dialog.findViewById(R.id.dogImage)
             viewModel.setSelectedImage(selectedImageUri)
+
             Glide.with(dialog.context)
                 .load(selectedImageUri)
                 .into(imageView)
