@@ -10,10 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.madcamp_week1_tab1_try.databinding.FragmentBBinding
+import androidx.lifecycle.ViewModelProvider
+
+
 
 class FragmentB : Fragment() {
 
     private lateinit var binding: FragmentBBinding
+    private lateinit var viewModel: SharedViewModel
+
     companion object {
         private const val pick_image_request = 1
     }
@@ -23,6 +28,7 @@ class FragmentB : Fragment() {
     ): View? {
         binding = FragmentBBinding.inflate(inflater, container, false)
         val rootView = binding.root
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         binding.galleryBtn1.setOnClickListener{openGallery()}
 
         binding.testBtn.setOnClickListener { navigateToTestFragment() }
@@ -51,9 +57,7 @@ class FragmentB : Fragment() {
 
         if (requestCode == pick_image_request && resultCode == Activity.RESULT_OK) {
             val selectedImageUri: Uri? = data?.data
-            if (selectedImageUri != null) {
-                (requireActivity() as? ImageUpdateListener)?.updateFragmentC(selectedImageUri)
-            }
+            viewModel.setSelectedImage(selectedImageUri)
         }
     }
 
