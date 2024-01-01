@@ -16,7 +16,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.madcamp_week1_tab1_try.databinding.FragmentBBinding
 
 class ResultFragment : Fragment() {
 
