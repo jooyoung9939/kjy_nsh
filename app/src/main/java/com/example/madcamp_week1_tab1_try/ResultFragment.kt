@@ -31,19 +31,19 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_result_success, container, false)
-        val rootView1 = inflater.inflate(R.layout.fragment_result_fault, container, false)
-        if (totalScore >= 60){
-            initializeViews(rootView)
-            displayResult()
-            setListeners()
-            return rootView
+        val rootView: View
+        totalScore = arguments?.getInt(ARG_TOTAL_SCORE, 0) ?: 0
+        if (totalScore >= 60) {
+            rootView = inflater.inflate(R.layout.fragment_result_success, container, false)
         } else {
-            initializeViews(rootView1)
-            displayResult()
-            setListeners()
-            return rootView1
+            rootView = inflater.inflate(R.layout.fragment_result_fault, container, false)
         }
+
+        initializeViews(rootView)
+        displayResult()
+        setListeners()
+
+        return rootView
     }
 
     private fun initializeViews(view: View) {
