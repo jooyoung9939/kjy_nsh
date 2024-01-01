@@ -34,9 +34,12 @@ class FragmentD : Fragment() {
         customAdapter = CustomAdapter(requireContext()){ position ->
             customAdapter.removeItem(position)
         }
+
         customAdapter.addItem("조유리", "010-1100-0000")
         customAdapter.addItem("박재범", "010-8292-5237")
         customAdapter.addItem("김채원", "010-8729-7897")
+
+        customAdapter.setFilteredItemList(customAdapter.itemList)
 
         recyclerView.adapter = customAdapter
 

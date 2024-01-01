@@ -12,7 +12,7 @@ class CustomAdapter(
     private val onItemLongClickListener: (position: Int) -> Unit
 ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-    private val itemList = ArrayList<Item>()
+    val itemList = ArrayList<Item>()
     private var filteredItemList = ArrayList<Item>()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,11 +28,13 @@ class CustomAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item: Item
 
-        if (filteredItemList.isEmpty()) {
-            item = itemList[position]
-        } else {
-            item = filteredItemList[position]
-        }
+//        if (filteredItemList.isEmpty()) {
+//            item = itemList[position]
+//        } else {
+//            item = filteredItemList[position]
+//        }
+
+        item = filteredItemList[position]
 
         holder.nameItem.text = item.name
         holder.numItem.text = item.num
@@ -45,7 +47,7 @@ class CustomAdapter(
 
     override fun getItemCount(): Int {
         return if (filteredItemList.isEmpty()) {
-            itemList.size
+            filteredItemList.size
         } else {
             filteredItemList.size
         }
@@ -77,6 +79,10 @@ class CustomAdapter(
         itemList.removeAt(position)
         notifyDataSetChanged()
     }
-
+    fun setFilteredItemList(items: List<Item>) {
+        filteredItemList.clear()
+        filteredItemList.addAll(items)
+        notifyDataSetChanged()
+    }
     data class Item(val name: String, val num: String)
 }
