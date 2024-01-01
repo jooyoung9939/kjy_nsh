@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CustomAdapter(
     private val context: Context,
-    private val onItemLongClickListener: (position: Int) -> Unit
+    private val onItemLongClickListener: (position: Int) -> (Unit),
+    private val onClick: (position: Int) -> (Unit)
 ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     val itemList = ArrayList<Item>()
@@ -43,14 +44,14 @@ class CustomAdapter(
             onItemLongClickListener.invoke(holder.adapterPosition)
             true
         }
+
+        holder.itemView.setOnClickListener {
+            onClick.invoke(holder.adapterPosition)
+        }
     }
 
     override fun getItemCount(): Int {
-        return if (filteredItemList.isEmpty()) {
-            filteredItemList.size
-        } else {
-            filteredItemList.size
-        }
+        return filteredItemList.size
     }
 
     fun filter(text: String) {
@@ -77,12 +78,18 @@ class CustomAdapter(
 
     fun removeItem(position: Int) {
         itemList.removeAt(position)
+        filteredItemList.clear()
+        filteredItemList.addAll(itemList)
         notifyDataSetChanged()
     }
     fun setFilteredItemList(items: List<Item>) {
         filteredItemList.clear()
         filteredItemList.addAll(items)
         notifyDataSetChanged()
+    }
+
+    fun getItem(position: Int): Item {
+        return filteredItemList[position]
     }
     data class Item(val name: String, val num: String)
 }

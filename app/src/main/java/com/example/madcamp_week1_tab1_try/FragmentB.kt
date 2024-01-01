@@ -13,6 +13,7 @@ import com.example.madcamp_week1_tab1_try.databinding.FragmentBBinding
 import androidx.lifecycle.ViewModelProvider
 
 
+
 class FragmentB : Fragment() {
 
     private lateinit var binding: FragmentBBinding
@@ -29,6 +30,9 @@ class FragmentB : Fragment() {
         val rootView = binding.root
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         binding.galleryBtn1.setOnClickListener{openGallery()}
+
+        binding.testBtn.setOnClickListener { navigateToTestFragment() }
+
         return rootView
     }
 
@@ -39,6 +43,15 @@ class FragmentB : Fragment() {
         )
         startActivityForResult(pickImageIntent, pick_image_request)
     }
+
+    private fun navigateToTestFragment() {
+        val testFragment = TestFragment()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container_test, testFragment)
+        transaction.addToBackStack(null)  // 선택 사항: 백 스택에 추가
+        transaction.commit()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

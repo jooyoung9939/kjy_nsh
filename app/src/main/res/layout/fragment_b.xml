@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentA">
+    android:orientation="vertical"
+    android:background="#EBEBEB"
+    tools:context=".FragmentB">
 
     <Button
         android:id="@+id/galleryBtn1"
@@ -12,4 +14,17 @@
         android:text="사진첩 열기"
         android:textSize="20sp" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/testBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="입양하기"
+            android:textSize="20sp" />
+
+    <FrameLayout
+        android:id="@+id/container_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>
