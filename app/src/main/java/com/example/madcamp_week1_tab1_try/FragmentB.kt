@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.madcamp_week1_tab1_try.databinding.FragmentBBinding
-import com.example.madcamp_week1_tab1_try.databinding.FragmentCBinding
 
 class FragmentB : Fragment() {
 
@@ -26,6 +25,8 @@ class FragmentB : Fragment() {
         val rootView = binding.root
         binding.galleryBtn1.setOnClickListener{openGallery()}
 
+        binding.testBtn.setOnClickListener { navigateToTestFragment() }
+
         return rootView
     }
 
@@ -36,6 +37,15 @@ class FragmentB : Fragment() {
         )
         startActivityForResult(pickImageIntent, pick_image_request)
     }
+
+    private fun navigateToTestFragment() {
+        val testFragment = TestFragment()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container_test, testFragment)
+        transaction.addToBackStack(null)  // 선택 사항: 백 스택에 추가
+        transaction.commit()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

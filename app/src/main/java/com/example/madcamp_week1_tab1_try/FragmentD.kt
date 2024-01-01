@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,8 @@ class FragmentD : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchEditText: EditText
 
+    private var selectedProfile: CustomAdapter.Item? = null
+
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +34,14 @@ class FragmentD : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        customAdapter = CustomAdapter(requireContext()){ position ->
+        customAdapter = CustomAdapter(requireContext(), { position ->
             customAdapter.removeItem(position)
-        }
+        }, { position ->
+            // 클릭 시 선택된 프로필 저장
+            selectedProfile = customAdapter.getItem(position)
+            // 다이얼로그 업데이트
+            updateProfileDialog()
+        })
 
         customAdapter.addItem("조유리", "010-1100-0000")
         customAdapter.addItem("박재범", "010-8292-5237")
@@ -81,6 +89,25 @@ class FragmentD : Fragment() {
         }
 
         return view
+    }
+    private fun updateProfileDialog() {
+        selectedProfile?.let { profile ->
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.proflie_dialog)
+
+            val name: TextView = dialog.findViewById(R.id.nameText)
+            val num: TextView = dialog.findViewById(R.id.numText)
+
+            name.text = profile.name
+            num.text = profile.num
+
+            val closeButton: Button = dialog.findViewById(R.id.btnClose)
+            closeButton.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
     }
 }
 
