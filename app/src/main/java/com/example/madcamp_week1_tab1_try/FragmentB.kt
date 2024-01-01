@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider
 class FragmentB : Fragment() {
 
     private lateinit var binding: FragmentBBinding
-    private lateinit var viewModel: SharedViewModel
 
     companion object {
         private const val pick_image_request = 1
@@ -28,20 +27,9 @@ class FragmentB : Fragment() {
     ): View? {
         binding = FragmentBBinding.inflate(inflater, container, false)
         val rootView = binding.root
-        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        binding.galleryBtn1.setOnClickListener{openGallery()}
-
         binding.testBtn.setOnClickListener { navigateToTestFragment() }
 
         return rootView
-    }
-
-    private fun openGallery() {
-        val pickImageIntent = Intent(
-            Intent.ACTION_PICK,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        )
-        startActivityForResult(pickImageIntent, pick_image_request)
     }
 
     private fun navigateToTestFragment() {
@@ -52,14 +40,6 @@ class FragmentB : Fragment() {
         transaction.commit()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == pick_image_request && resultCode == Activity.RESULT_OK) {
-            val selectedImageUri: Uri? = data?.data
-            viewModel.setSelectedImage(selectedImageUri)
-        }
-    }
 
 
 }

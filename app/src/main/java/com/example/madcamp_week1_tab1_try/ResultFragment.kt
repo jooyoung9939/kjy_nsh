@@ -95,6 +95,7 @@ class ResultFragment : Fragment() {
 
             gallery_btn.setOnClickListener{
                 openGallery()
+                dialog.dismiss()
             }
             dialog.show()
         }
@@ -118,7 +119,18 @@ class ResultFragment : Fragment() {
             val dialog = Dialog(requireContext())
             dialog.setContentView(dialogView)
 
+            val name: EditText = dialog.findViewById(R.id.name1)
+            val num: EditText = dialog.findViewById(R.id.num1)
+
+            val adopt_button: Button = dialog.findViewById(R.id.btn_adopt)
+            adopt_button.setOnClickListener{
+                // 선택된 이미지 및 정보로 ViewModel 업데이트
+                viewModel.setContactInfo(name.text.toString(), num.text.toString(), selectedImageUri)
+                dialog.dismiss()
+            }
+
             val imageView: ImageView = dialog.findViewById(R.id.dogImage)
+            viewModel.setSelectedImage(selectedImageUri)
 
             Glide.with(dialog.context)
                 .load(selectedImageUri)
@@ -142,4 +154,3 @@ class ResultFragment : Fragment() {
         transaction.commit()
     }
 }
-
