@@ -120,11 +120,13 @@ class ResultFragment : Fragment() {
 
             val name: EditText = dialog.findViewById(R.id.name1)
             val num: EditText = dialog.findViewById(R.id.num1)
+            val dogname: EditText = dialog.findViewById(R.id.name2)
+            val centertag: EditText = dialog.findViewById(R.id.centertag)
 
             val adopt_button: Button = dialog.findViewById(R.id.btn_adopt)
             adopt_button.setOnClickListener{
                 // 선택된 이미지 및 정보로 ViewModel 업데이트
-                viewModel.setContactInfo(name.text.toString(), num.text.toString(), selectedImageUri)
+                viewModel.setContactInfo(name.text.toString(), num.text.toString(), selectedImageUri, dogname.text.toString(), centertag.text.toString(), "안 잃어버림")
                 dialog.dismiss()
             }
 

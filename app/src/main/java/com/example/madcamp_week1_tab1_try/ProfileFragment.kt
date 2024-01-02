@@ -16,9 +16,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class FragmentD : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private lateinit var centerAdapter: CenterAdapter
     private lateinit var customAdapter: CustomAdapter
 
     private lateinit var recyclerView: RecyclerView
@@ -28,22 +27,20 @@ class FragmentD : Fragment() {
     private lateinit var viewModel: SharedViewModel
     private lateinit var viewModel1: sharingnumber
 
-
-    private var selectedCenter: CenterAdapter.centerItem? = null
-
     private var selectedProfile: CustomAdapter.Item? = null
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_d, container, false)
+        val view = inflater.inflate(R.layout.member_dialog, container, false)
 
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         viewModel1 = ViewModelProvider(requireActivity())[sharingnumber::class.java]
 
-        recyclerView = view.findViewById(R.id.centerRecyclerView)
+        recyclerView = view.findViewById(R.id.RecyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -54,26 +51,21 @@ class FragmentD : Fragment() {
             updateProfileDialog()
         })
 
-        centerAdapter = CenterAdapter(requireContext(), { position ->
-            // 클릭 시 선택된 프로필 저장
-            selectedCenter = centerAdapter.getItem(position)
-            // 다이얼로그 업데이트
-            centerPWDialog()
-        })
-
-        centerAdapter.addItem("유기견 보호소 1", "055-542-7654","1", "1234")
-        centerAdapter.addItem("유기견 보호소 2", "053-471-4274","2", "0000")
-        centerAdapter.addItem("유기견 보호소 3", "050-434-7810","3", "9876")
-
         customAdapter.addItem("조유리", "010-1100-0000","1")
         customAdapter.addItem("박재범", "010-8292-5237","2")
         customAdapter.addItem("김채원", "010-8729-7897", "3")
 
-        centerAdapter.setFilteredItemList(centerAdapter.centerItemList)
+        viewModel1.centertagnum.observe(viewLifecycleOwner){ centertagnum ->
+            if (centertagnum != null) {
+                customAdapter.profileFilter(centertagnum)
+            }
+        }
 
-        recyclerView.adapter = centerAdapter
+        customAdapter.setFilteredItemList()
 
-        searchEditText = view.findViewById(R.id.search_bar)
+        recyclerView.adapter = customAdapter
+
+        searchEditText = view.findViewById(R.id.profile_search_bar)
 
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
@@ -83,7 +75,7 @@ class FragmentD : Fragment() {
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
                 // 텍스트가 변경될 때마다 호출됨
                 val searchText = charSequence?.toString() ?: ""
-                centerAdapter.filter(searchText)
+                customAdapter.filter(searchText)
             }
 
             override fun afterTextChanged(editable: Editable?) {
@@ -92,52 +84,24 @@ class FragmentD : Fragment() {
             }
         })
 
+        viewModel.contactInfo.observe(viewLifecycleOwner) { contactInfo ->
+            if (contactInfo != null) {
+                customAdapter.addItem(contactInfo.name, contactInfo.phoneNumber, contactInfo.centertag)
+                viewModel1.centertagnum.observe(viewLifecycleOwner){ centertagnum ->
+                    if (centertagnum != null) {
+                        customAdapter.profileFilter(centertagnum)
+                    }
+                }
+            }
+        }
+
+        val closeButton: Button = view.findViewById(R.id.btnClose)
+        closeButton.setOnClickListener {
+            navigateToFragmentD()
+        }
+
         return view
     }
-
-    private fun centerPWDialog(){
-        selectedCenter?.let { profile ->
-            val dialog = Dialog(requireContext())
-            dialog.setContentView(R.layout.center_password_dialog)
-
-            val PW: EditText = dialog.findViewById(R.id.centerPW)
-            val confirmButton: Button = dialog.findViewById(R.id.btnPW)
-
-            confirmButton.setOnClickListener {
-                val enteredPW = PW.text.toString()
-
-                if (profile.centerPW == enteredPW) {
-//                    customAdapter.setCenterTagFilter(profile.centerTag)
-                    viewModel1.setcentertagnum(profile.centerTag)
-//                    customAdapter.profileFilter()
-                    navigateToProfileFragment()
-                } else {
-                    showPasswordMismatchDialog()
-                }
-                dialog.dismiss()
-            }
-            dialog.show()
-        }
-    }
-    private fun navigateToProfileFragment() {
-        val profileFragment = ProfileFragment()
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container_profile, profileFragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
-
-    private fun showPasswordMismatchDialog() {
-        val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.center_password_fault_dialog)
-
-        val exitButton: Button = dialog.findViewById(R.id.btnExit)
-        exitButton.setOnClickListener {
-            dialog.dismiss()
-        }
-        dialog.show()
-    }
-
     private fun updateProfileDialog() {
         selectedProfile?.let { profile ->
             val dialog = Dialog(requireContext())
@@ -158,4 +122,13 @@ class FragmentD : Fragment() {
             dialog.show()
         }
     }
+
+    private fun navigateToFragmentD() {
+        val FragmentD = FragmentD()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container_profile, FragmentD)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
 }
+

@@ -62,9 +62,9 @@ class FragmentC : Fragment() {
     inner class MyGridAdapter(private val context: Context) : BaseAdapter() {
 
         val picID = ArrayList<ContactInfo>().apply {
-        add(ContactInfo("남승훈","1234",resourceIDtoUri(context, R.drawable.doggy_1)))
-        add(ContactInfo("남승훈","1234",resourceIDtoUri(context, R.drawable.doggy_1)))
-        add(ContactInfo("남승훈","1234",resourceIDtoUri(context, R.drawable.doggy_1)))
+            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
+            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
+            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
         }
 
         private fun resourceIDtoUri(context: Context, resourceId: Int): Uri {
