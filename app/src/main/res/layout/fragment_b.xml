@@ -8,19 +8,12 @@
     tools:context=".FragmentB">
 
     <Button
-        android:id="@+id/galleryBtn1"
+        android:id="@+id/testBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="사진첩 열기"
+        android:layout_gravity="center"
+        android:text="입양하기"
         android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/testBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="입양하기"
-            android:textSize="20sp" />
 
     <FrameLayout
         android:id="@+id/container_test"
