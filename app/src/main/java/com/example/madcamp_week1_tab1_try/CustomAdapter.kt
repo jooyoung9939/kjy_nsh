@@ -65,11 +65,6 @@ class CustomAdapter(
         notifyDataSetChanged()
     }
 
-    fun profileFilter1(){
-        filteredProfileList.clear()
-
-        filteredProfileList.addAll(itemList.filter { it.centerTag == "1" })
-    }
 
     fun profileFilter(centerTagFilter: String) {
         filteredProfileList.clear()
@@ -79,8 +74,6 @@ class CustomAdapter(
 
         filteredItemList.clear()
         filteredItemList.addAll(filteredProfileList)
-
-        Log.d("2342342","결과: $filteredProfileList")
 
         notifyDataSetChanged()
     }

@@ -38,6 +38,7 @@ class ResultFragment : Fragment() {
     private lateinit var scoreTextView: TextView
     private lateinit var backButton: Button
     private lateinit var adoptButton: Button
+    private lateinit var gobackbutton: Button
     var totalScore = arguments?.getInt(ARG_TOTAL_SCORE, 0) ?: 0
 
     override fun onCreateView(
@@ -67,6 +68,7 @@ class ResultFragment : Fragment() {
         resultTextView = view.findViewById(R.id.resultTextView)
         scoreTextView = view.findViewById(R.id.scoreTextView)
         adoptButton = view.findViewById(R.id.adoptButton)
+        gobackbutton = view.findViewById(R.id.go_back_botton)
     }
 
     private fun initializeViews1(view: View) {
@@ -97,6 +99,9 @@ class ResultFragment : Fragment() {
                 dialog.dismiss()
             }
             dialog.show()
+        }
+        gobackbutton.setOnClickListener {
+            resetScoreAndNavigateToFragmentB()
         }
     }
 
