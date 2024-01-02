@@ -22,3 +22,12 @@ class SharedViewModel : ViewModel() {
         _contactInfo.value = contactInfo
     }
 }
+
+class sharingnumber : ViewModel(){
+    private val _centertagnum = MutableLiveData<String>()
+    val centertagnum: MutableLiveData<String>
+        get() = _centertagnum
+    fun setcentertagnum(num: String) {
+        _centertagnum.value = num
+    }
+}

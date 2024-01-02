@@ -139,6 +139,7 @@ class FragmentC : Fragment() {
             add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
             add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_2), "뭉치", "1", "잃어버림"))
             add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_3), "뭉치", "1", "잃어버림"))
+
         }
         private fun resourceIDtoUri(context: Context, resourceId: Int): Uri {
             return Uri.parse("android.resource://" + context.packageName + "/" + resourceId)
