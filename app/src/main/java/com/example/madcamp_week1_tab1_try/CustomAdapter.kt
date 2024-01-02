@@ -28,13 +28,6 @@ class CustomAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item: Item
-
-//        if (filteredItemList.isEmpty()) {
-//            item = itemList[position]
-//        } else {
-//            item = filteredItemList[position]
-//        }
-
         item = filteredItemList[position]
 
         holder.nameItem.text = item.name
@@ -67,7 +60,6 @@ class CustomAdapter(
                 }
             }
         }
-
         notifyDataSetChanged()
     }
 

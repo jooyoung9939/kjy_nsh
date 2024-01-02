@@ -14,11 +14,43 @@
     <TextView
         android:id="@+id/tvName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvPhoneNumber"/>
+        android:layout_height="30dp"
+        android:id="@+id/tvPhoneNumber"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"/>
+    <TextView
+        android:id="@+id/tvdogName"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"/>
+
+    <TextView
+        android:id="@+id/tVcentertag"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/tVdogstate"
+        android:gravity="center"/>
+
+    <ImageButton
+        android:id="@+id/change_btn"
+        android:src="@drawable/contact_user_add_user_new_user_icon_250756"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="30dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        style="?android:attr/borderlessButtonStyle"/>
 
 </LinearLayout>

@@ -77,24 +77,6 @@ class FragmentD : Fragment() {
                 customAdapter.setFilteredItemList(customAdapter.itemList)
             }
         }
-//        val plusButton: AppCompatImageButton = view.findViewById(R.id.plus_button)
-//        plusButton.setOnClickListener {
-//            val dialog = Dialog(requireContext())
-//            dialog.setContentView(R.layout.custom_dialog)
-//
-//            val name: EditText = dialog.findViewById(R.id.name)
-//            val num: EditText = dialog.findViewById(R.id.num)
-//
-//            val closeButton: Button = dialog.findViewById(R.id.btnAdd)
-//            closeButton.setOnClickListener {
-//                customAdapter.addItem(name.text.toString(), num.text.toString())
-//                val searchText = searchEditText.text.toString()
-//                customAdapter.filter(searchText)
-//                dialog.dismiss()
-//            }
-//            dialog.show()
-//        }
-
         return view
     }
     private fun updateProfileDialog() {

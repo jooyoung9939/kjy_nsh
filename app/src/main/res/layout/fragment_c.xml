@@ -36,7 +36,7 @@
             android:numColumns="3"
             />
         <ImageButton
-            android:id="@+id/galleryBtn"
+            android:id="@+id/sort_btn"
             android:src="@drawable/contact_user_add_user_new_user_icon_250756"
             android:layout_width="64dp"
             android:layout_height="64dp"

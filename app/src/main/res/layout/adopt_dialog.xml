@@ -27,8 +27,8 @@
     <ImageView
         android:id="@+id/dogImage"
         android:background="@drawable/square_background_border_black"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginVertical="10dp"/>
 
     <Button
@@ -38,6 +38,20 @@
         android:text="사진첩 열기"
         android:textSize="15sp"
         android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:text="* 강아지 정보"/>
+
+    <EditText
+        android:id="@+id/name2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="이름"
+        android:inputType="text"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -59,6 +73,19 @@
         android:layout_height="wrap_content"
         android:hint="전화번호"
         android:inputType="phone" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:text="* 센터 정보"/>
+
+    <EditText
+        android:id="@+id/centertag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="센터 번호"
+        android:inputType="text"/>
 
     <Button
         android:id="@+id/btn_adopt"
