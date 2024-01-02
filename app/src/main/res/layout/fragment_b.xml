@@ -7,13 +7,57 @@
     android:background="#EBEBEB"
     tools:context=".FragmentB">
 
-    <Button
-        android:id="@+id/testBtn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="사연 게시판" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/postBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="글쓰기"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <EditText
+        android:id="@+id/post_search_bar"
+        android:layout_width="350dp"
+        android:layout_marginTop="60dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="입양하기"
-        android:textSize="20sp" />
+        android:layout_gravity="center_horizontal"
+        android:hint="  제목"
+        android:inputType="text"
+        android:drawableStart="@drawable/search"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/postRecyclerView"
+        tools:listitem="@layout/post_item"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginTop="120dp"/>
+
+        <Button
+            android:id="@+id/testBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="230dp"
+            android:text="입양하기"
+            android:textSize="20sp" />
 
     <FrameLayout
         android:id="@+id/container_test"
