@@ -12,8 +12,6 @@ import android.view.ViewGroup
 import com.example.madcamp_week1_tab1_try.databinding.FragmentBBinding
 import androidx.lifecycle.ViewModelProvider
 
-
-
 class FragmentB : Fragment() {
 
     private lateinit var binding: FragmentBBinding
@@ -28,7 +26,6 @@ class FragmentB : Fragment() {
         binding = FragmentBBinding.inflate(inflater, container, false)
         val rootView = binding.root
         binding.testBtn.setOnClickListener { navigateToTestFragment() }
-
         return rootView
     }
 
