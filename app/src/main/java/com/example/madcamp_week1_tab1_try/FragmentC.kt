@@ -66,12 +66,12 @@ class FragmentC : Fragment() {
 
         if(showlostdogs){
             ivPic.setImageURI(gAdapter.picID[position].imageUri)
-            tvName.text = getString(R.string.owner_name, gAdapter.filtered_picID[position].name)
-            tvPhoneNumber.text = getString(R.string.phone_number, gAdapter.filtered_picID[position].phoneNumber)
-            tvdogName.text = getString(R.string.dog_name, gAdapter.filtered_picID[position].dogname)
-            tvcentertag.text = getString(R.string.center_tag, gAdapter.filtered_picID[position].centertag)
-            tvdogstate.text = getString(R.string.dog_state, gAdapter.filtered_picID[position].dogstate)
 
+            tvName.text = getString(R.string.owner_name, gAdapter.picID[position].name)
+            tvPhoneNumber.text = getString(R.string.phone_number, gAdapter.picID[position].phoneNumber)
+            tvdogName.text = getString(R.string.dog_name, gAdapter.picID[position].dogname)
+            tvcentertag.text = getString(R.string.center_tag, gAdapter.picID[position].centertag)
+            tvdogstate.text = getString(R.string.dog_state, gAdapter.picID[position].dogstate)
             //dlg.setTitle("큰 이미지")
             dlg.setView(dialogView)
             dlg.setNegativeButton("닫기", null)
@@ -93,11 +93,12 @@ class FragmentC : Fragment() {
         }
         else{
             ivPic.setImageURI(gAdapter.filtered_picID[position].imageUri)
-            tvName.text = getString(R.string.owner_name, gAdapter.picID[position].name)
-            tvPhoneNumber.text = getString(R.string.phone_number, gAdapter.picID[position].phoneNumber)
-            tvdogName.text = getString(R.string.dog_name, gAdapter.picID[position].dogname)
-            tvcentertag.text = getString(R.string.center_tag, gAdapter.picID[position].centertag)
-            tvdogstate.text = getString(R.string.dog_state, gAdapter.picID[position].dogstate)
+
+            tvName.text = getString(R.string.owner_name, gAdapter.filtered_picID[position].name)
+            tvPhoneNumber.text = getString(R.string.phone_number, gAdapter.filtered_picID[position].phoneNumber)
+            tvdogName.text = getString(R.string.dog_name, gAdapter.filtered_picID[position].dogname)
+            tvcentertag.text = getString(R.string.center_tag, gAdapter.filtered_picID[position].centertag)
+            tvdogstate.text = getString(R.string.dog_state, gAdapter.filtered_picID[position].dogstate)
 
             //dlg.setTitle("큰 이미지")
             dlg.setView(dialogView)
