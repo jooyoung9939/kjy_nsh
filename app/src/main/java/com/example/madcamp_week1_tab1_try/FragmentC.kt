@@ -1,5 +1,6 @@
 package com.example.madcamp_week1_tab1_try
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -24,7 +25,6 @@ class FragmentC : Fragment() {
     private lateinit var binding: FragmentCBinding
     private lateinit var viewModel: SharedViewModel
     private var showlostdogs = true
-    private var letsgo = true
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +38,8 @@ class FragmentC : Fragment() {
         }
         binding.sortBtn.setOnClickListener{
             showlostdogs=!showlostdogs
-            //gAdapter.filter()
+            if(!showlostdogs) binding.sortBtn.text = "유기견"
+            else binding.sortBtn.text = "전체"
             gAdapter.notifyDataSetChanged()
         }
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
@@ -60,46 +61,45 @@ class FragmentC : Fragment() {
         val tvPhoneNumber = dialogView.findViewById<TextView>(R.id.tvPhoneNumber)
         val tvdogName = dialogView.findViewById<TextView>(R.id.tvdogName)
         val tvcentertag = dialogView.findViewById<TextView>(R.id.tVcentertag)
-        val tvdogstate = dialogView.findViewById<TextView>(R.id.tVdogstate)
-        val changebtn = dialogView.findViewById<ImageButton>(R.id.change_btn)
+        var tvdogstate = dialogView.findViewById<TextView>(R.id.tVdogstate)
+        val changebtn = dialogView.findViewById<Button>(R.id.change_btn)
 
         if(showlostdogs){
             ivPic.setImageURI(gAdapter.picID[position].imageUri)
-            tvName.text = gAdapter.picID[position].name
-            tvPhoneNumber.text = gAdapter.picID[position].phoneNumber
-            tvdogName.text = gAdapter.picID[position].dogname
-            tvcentertag.text = gAdapter.picID[position].centertag
-            tvdogstate.text = gAdapter.picID[position].dogstate
+            tvName.text = getString(R.string.owner_name, gAdapter.filtered_picID[position].name)
+            tvPhoneNumber.text = getString(R.string.phone_number, gAdapter.filtered_picID[position].phoneNumber)
+            tvdogName.text = getString(R.string.dog_name, gAdapter.filtered_picID[position].dogname)
+            tvcentertag.text = getString(R.string.center_tag, gAdapter.filtered_picID[position].centertag)
+            tvdogstate.text = getString(R.string.dog_state, gAdapter.filtered_picID[position].dogstate)
 
-            dlg.setTitle("큰 이미지")
-            dlg.setIcon(R.drawable.ic_launcher)
+            //dlg.setTitle("큰 이미지")
             dlg.setView(dialogView)
             dlg.setNegativeButton("닫기", null)
 
             changebtn.setOnClickListener{
                 if (gAdapter.picID[position].dogstate == "잃어버림"){
                     gAdapter.picID[position].dogstate = "안 잃어버림"
-                    tvdogstate.text = "안 잃어버림"
+                    tvdogstate.text = getString(R.string.dog_state, "안 잃어버림")
                     gAdapter.filter()
+                    changebtn.text = "잃어버린 강아지로 등록하기"
                 }
                 else{
                     gAdapter.picID[position].dogstate = "잃어버림"
-                    tvdogstate.text = "잃어버림"
+                    tvdogstate.text = getString(R.string.dog_state, "잃어버림")
                     gAdapter.filter()
+                    changebtn.text = "강아지를 찾았습니다"
                 }
-                !letsgo
             }
         }
         else{
             ivPic.setImageURI(gAdapter.filtered_picID[position].imageUri)
-            tvName.text = gAdapter.filtered_picID[position].name
-            tvPhoneNumber.text = gAdapter.filtered_picID[position].phoneNumber
-            tvdogName.text = gAdapter.filtered_picID[position].dogname
-            tvcentertag.text = gAdapter.filtered_picID[position].centertag
-            tvdogstate.text = gAdapter.filtered_picID[position].dogstate
+            tvName.text = getString(R.string.owner_name, gAdapter.picID[position].name)
+            tvPhoneNumber.text = getString(R.string.phone_number, gAdapter.picID[position].phoneNumber)
+            tvdogName.text = getString(R.string.dog_name, gAdapter.picID[position].dogname)
+            tvcentertag.text = getString(R.string.center_tag, gAdapter.picID[position].centertag)
+            tvdogstate.text = getString(R.string.dog_state, gAdapter.picID[position].dogstate)
 
-            dlg.setTitle("큰 이미지")
-            dlg.setIcon(R.drawable.ic_launcher)
+            //dlg.setTitle("큰 이미지")
             dlg.setView(dialogView)
             dlg.setNegativeButton("닫기", null)
 
@@ -110,8 +110,9 @@ class FragmentC : Fragment() {
                             item.dogstate="안 잃어버림"
                         }
                     }
-                    tvdogstate.text = "안 잃어버림"
+                    tvdogstate.text = getString(R.string.dog_state, "안 잃어버림")
                     gAdapter.filter()
+                    changebtn.text = "잃어버린 강아지로 등록하기"
                 }
                 else{
                     for(item in gAdapter.picID){
@@ -119,10 +120,10 @@ class FragmentC : Fragment() {
                             item.dogstate="잃어버림"
                         }
                     }
-                    tvdogstate.text = "잃어버림"
+                    tvdogstate.text = getString(R.string.dog_state, "잃어버림")
                     gAdapter.filter()
+                    changebtn.text = "강아지를 찾았습니다"
                 }
-                !letsgo
             }
         }
 
@@ -139,7 +140,6 @@ class FragmentC : Fragment() {
             add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
             add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_2), "뭉치", "1", "잃어버림"))
             add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_3), "뭉치", "1", "잃어버림"))
-
         }
         private fun resourceIDtoUri(context: Context, resourceId: Int): Uri {
             return Uri.parse("android.resource://" + context.packageName + "/" + resourceId)
