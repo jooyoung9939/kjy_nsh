@@ -13,45 +13,103 @@
         android:id="@+id/ivPic"
         android:layout_marginBottom="30dp"
         android:scaleType="centerCrop"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="견주의 이름"
+                android:textStyle="bold"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="start" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="240dp"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="견주의 전화번호"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/tvPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="start" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="start"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"/>
+    </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/tvPhoneNumber"
-        android:gravity="start"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:id="@+id/tvdogName"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="start"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp">
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="강아지의 이름"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/tvdogName"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="start" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="240dp"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="센터 태그"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/tVcentertag"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="start" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/tVcentertag"
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="start"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/tVdogstate"
-        android:gravity="start"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="강아지의 상태"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/tVdogstate"
+            android:gravity="start" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/change_btn"

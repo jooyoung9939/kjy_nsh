@@ -67,11 +67,11 @@ class FragmentC : Fragment() {
         if(showlostdogs){
             ivPic.setImageURI(gAdapter.picID[position].imageUri)
 
-            tvName.text = getString(R.string.owner_name, gAdapter.picID[position].name)
-            tvPhoneNumber.text = getString(R.string.phone_number, gAdapter.picID[position].phoneNumber)
-            tvdogName.text = getString(R.string.dog_name, gAdapter.picID[position].dogname)
-            tvcentertag.text = getString(R.string.center_tag, gAdapter.picID[position].centertag)
-            tvdogstate.text = getString(R.string.dog_state, gAdapter.picID[position].dogstate)
+            tvName.text = gAdapter.picID[position].name
+            tvPhoneNumber.text = gAdapter.picID[position].phoneNumber
+            tvdogName.text = gAdapter.picID[position].dogname
+            tvcentertag.text =gAdapter.picID[position].centertag
+            tvdogstate.text = gAdapter.picID[position].dogstate
             //dlg.setTitle("큰 이미지")
             dlg.setView(dialogView)
             dlg.setNegativeButton("닫기", null)
@@ -79,13 +79,13 @@ class FragmentC : Fragment() {
             changebtn.setOnClickListener{
                 if (gAdapter.picID[position].dogstate == "잃어버림"){
                     gAdapter.picID[position].dogstate = "안 잃어버림"
-                    tvdogstate.text = getString(R.string.dog_state, "안 잃어버림")
+                    tvdogstate.text =  "안 잃어버림"
                     gAdapter.filter()
                     changebtn.text = "잃어버린 강아지로 등록하기"
                 }
                 else{
                     gAdapter.picID[position].dogstate = "잃어버림"
-                    tvdogstate.text = getString(R.string.dog_state, "잃어버림")
+                    tvdogstate.text = "잃어버림"
                     gAdapter.filter()
                     changebtn.text = "강아지를 찾았습니다"
                 }
@@ -94,11 +94,11 @@ class FragmentC : Fragment() {
         else{
             ivPic.setImageURI(gAdapter.filtered_picID[position].imageUri)
 
-            tvName.text = getString(R.string.owner_name, gAdapter.filtered_picID[position].name)
-            tvPhoneNumber.text = getString(R.string.phone_number, gAdapter.filtered_picID[position].phoneNumber)
-            tvdogName.text = getString(R.string.dog_name, gAdapter.filtered_picID[position].dogname)
-            tvcentertag.text = getString(R.string.center_tag, gAdapter.filtered_picID[position].centertag)
-            tvdogstate.text = getString(R.string.dog_state, gAdapter.filtered_picID[position].dogstate)
+            tvName.text =  gAdapter.filtered_picID[position].name
+            tvPhoneNumber.text = gAdapter.filtered_picID[position].phoneNumber
+            tvdogName.text = gAdapter.filtered_picID[position].dogname
+            tvcentertag.text = gAdapter.filtered_picID[position].centertag
+            tvdogstate.text = gAdapter.filtered_picID[position].dogstate
 
             //dlg.setTitle("큰 이미지")
             dlg.setView(dialogView)
@@ -111,7 +111,7 @@ class FragmentC : Fragment() {
                             item.dogstate="안 잃어버림"
                         }
                     }
-                    tvdogstate.text = getString(R.string.dog_state, "안 잃어버림")
+                    tvdogstate.text = "안 잃어버림"
                     gAdapter.filter()
                     changebtn.text = "잃어버린 강아지로 등록하기"
                 }
@@ -121,7 +121,7 @@ class FragmentC : Fragment() {
                             item.dogstate="잃어버림"
                         }
                     }
-                    tvdogstate.text = getString(R.string.dog_state, "잃어버림")
+                    tvdogstate.text = "잃어버림"
                     gAdapter.filter()
                     changebtn.text = "강아지를 찾았습니다"
                 }
