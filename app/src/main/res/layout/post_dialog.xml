@@ -8,21 +8,74 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="5dp">
+
+        <ImageView
+            android:src="@drawable/teenyicons_face_id_outline"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="8dp"
+            android:paddingTop="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="익명"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="제목"
+        android:textSize="10dp"
+        android:textColor="#adb5bd"/>
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ced4da"/>
+
     <TextView
         android:id="@+id/postTitleText"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:hint="제목"
-        android:textStyle="bold" />
+        android:layout_marginVertical="5dp"
+        android:hint="제목" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내용"
+        android:textSize="10dp"
+        android:textColor="#adb5bd"/>
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ced4da"/>
 
     <TextView
         android:id="@+id/postText"
         android:layout_width="195dp"
-        android:layout_height="400dp"
-        android:background="@drawable/square_background_border_black"
-        android:layout_marginVertical="10dp"
+        android:layout_height="350dp"
+        android:layout_marginVertical="5dp"
         android:hint="내용" />
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:background="#ced4da"/>
 
     <Button
         android:id="@+id/btnClose"

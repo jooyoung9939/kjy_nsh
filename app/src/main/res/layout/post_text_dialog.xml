@@ -8,21 +8,61 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="제목"
+        android:textSize="10dp"
+        android:textColor="#adb5bd"/>
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ced4da"/>
+
     <EditText
         android:id="@+id/postTitleEditText"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
-        android:hint="제목"
-        android:inputType="text"/>
+        android:layout_marginVertical="5dp"
+        android:hint="제목 입력"
+        android:textColorHint="#adb5bd"
+        android:inputType="text"
+        android:background="@null"
+        android:backgroundTint="#ced4da"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내용"
+        android:textSize="10dp"
+        android:textColor="#adb5bd"/>
+
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ced4da"/>
 
     <EditText
         android:id="@+id/postTextEditText"
         android:layout_width="195dp"
-        android:layout_height="400dp"
-        android:background="@drawable/square_background_border_black"
-        android:layout_marginVertical="10dp"
-        android:hint="내용"
-        android:inputType="text" />
+        android:layout_height="350dp"
+        android:layout_marginVertical="5dp"
+        android:hint="내용 입력"
+        android:textColorHint="#adb5bd"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="false"
+        android:background="@null"
+        android:backgroundTint="#ced4da"/>
+    <View
+        android:layout_width="320dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#ced4da"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
