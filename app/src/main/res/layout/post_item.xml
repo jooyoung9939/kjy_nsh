@@ -20,14 +20,14 @@
             android:gravity="center_vertical">
 
             <LinearLayout
-                android:layout_width="250dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:textStyle="bold"
                 android:layout_marginLeft="15dp">
                 <TextView
                     android:id="@+id/postTitleItem"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="20dp"
                     android:hint="잃어버린 강아지를 찾아주세요.."
                     android:textSize="15dp"
@@ -39,8 +39,8 @@
 
                 <TextView
                     android:id="@+id/postTextItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_width="240dp"
+                    android:layout_height="15dp"
                     android:hint="ㅠㅠㅠ 도와주세요."
                     android:textSize="10dp"
                     android:layout_marginVertical="5dp"
