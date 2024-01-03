@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:gravity="center"
+        android:layout_marginHorizontal="15dp"
         android:textSize="25dp"
         android:textStyle="bold"
         android:text="테스트 질문" />

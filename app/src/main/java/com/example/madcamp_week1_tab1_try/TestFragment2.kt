@@ -42,7 +42,7 @@ class TestFragment2 : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_test2, container, false)
         initializeViews(rootView)
-        setQuestionAndOptions("테스트 질문 2", "선택지 1", "선택지 2", "선택지 3", "선택지 4")
+        setQuestionAndOptions("일주일 중 집에 머무르는 날이 얼마나 되나요?", "1~2일", "3~4일", "5~6일", "매일")
 
         nextButton.setOnClickListener {
             calculateScore()

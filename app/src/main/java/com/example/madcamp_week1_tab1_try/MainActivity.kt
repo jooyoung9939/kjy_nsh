@@ -22,14 +22,14 @@ class MainActivity : AppCompatActivity(){
         viewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
         // 페이지 데이터 로드
-        val list = listOf(FragmentA(), FragmentB(), FragmentC(), FragmentD())
+        val list = listOf(FragmentD(), FragmentC(), FragmentB())
 
         // 아답터 생성 및 연결
         val pagerAdapter = FragmentPagerAdapter(list, this)
         binding.viewPager.adapter = pagerAdapter
 
         // 탭 메뉴 제목 설정
-        val titles = listOf("A", "B", "C", "D")
+        val titles = listOf("주소록", "갤러리", "추가")
 
         // 탭 레이아웃과 뷰페이저 연결
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->

@@ -42,7 +42,7 @@ class TestFragment5 : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_test5, container, false)
         initializeViews(rootView)
-        setQuestionAndOptions("테스트 질문 5", "선택지 1", "선택지 2", "선택지 3", "선택지 4")
+        setQuestionAndOptions("강아지를 위해 금전적인 책임을 이행할 수 있나요?", "이행하기 어렵다", "부족하지만 이행 가능하다", "충분히 이행할 수 있다", "완벽히 이행할 수 있다")
 
         submitButton.setOnClickListener {
             calculateScore()
