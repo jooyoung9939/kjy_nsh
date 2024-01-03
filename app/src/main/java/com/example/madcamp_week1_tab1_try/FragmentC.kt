@@ -165,9 +165,14 @@ class FragmentC : Fragment() {
 
         override fun getView(i: Int, view: View?, viewGroup: ViewGroup?): View {
             val imageView = ImageView(context)
-            imageView.layoutParams = ViewGroup.LayoutParams(400, 300)
+            //imageView.layoutParams = ViewGroup.LayoutParams(400, 300)
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP
             imageView.setPadding(5, 5, 5, 5)
+
+            val screenWidth = resources.displayMetrics.widthPixels
+            val itemWidth = screenWidth / 3 // 화면을 삼등분하여 크기 계산
+
+            imageView.layoutParams = ViewGroup.LayoutParams(itemWidth, itemWidth)
 
             if(showlostdogs){
                 Log.d("GridView", "picID before show: $picID")
