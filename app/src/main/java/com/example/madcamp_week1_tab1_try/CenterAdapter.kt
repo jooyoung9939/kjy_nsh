@@ -1,6 +1,7 @@
 package com.example.madcamp_week1_tab1_try
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ class CenterAdapter(
     private val context: Context,
     private val onClick: (position: Int) -> (Unit)
 ) : RecyclerView.Adapter<CenterAdapter.ViewHolder>() {
-    data class centerItem(val centerName: String, val centerNum: String, val centerTag: String, val centerPW: String)
+    data class centerItem(val centerName: String, val centerNum: String, val centerTag: String, val centerPW: String, val centerURI: Uri?, val centerText: String)
 
     val centerItemList = ArrayList<centerItem>()
     private var filteredCenterItemList = ArrayList<centerItem>()
@@ -60,8 +61,8 @@ class CenterAdapter(
         notifyDataSetChanged()
     }
 
-    fun addItem(centerName: String, centerNum: String, centerTag: String, centerPW: String) {
-        centerItemList.add(centerItem(centerName, centerNum, centerTag, centerPW))
+    fun addItem(centerName: String, centerNum: String, centerTag: String, centerPW: String, centerURI: Uri?, centerText: String) {
+        centerItemList.add(centerItem(centerName, centerNum, centerTag, centerPW, centerURI, centerText))
         notifyDataSetChanged()
     }
 

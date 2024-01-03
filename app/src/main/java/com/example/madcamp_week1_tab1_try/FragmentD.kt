@@ -2,19 +2,24 @@ package com.example.madcamp_week1_tab1_try
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class FragmentD : Fragment() {
 
@@ -32,6 +37,7 @@ class FragmentD : Fragment() {
     private var selectedCenter: CenterAdapter.centerItem? = null
 
     private var selectedProfile: CustomAdapter.Item? = null
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -61,9 +67,13 @@ class FragmentD : Fragment() {
             centerPWDialog()
         })
 
-        centerAdapter.addItem("유기견 보호소 1", "055-542-7654","1", "1234")
-        centerAdapter.addItem("유기견 보호소 2", "053-471-4274","2", "0000")
-        centerAdapter.addItem("유기견 보호소 3", "050-434-7810","3", "9876")
+        centerAdapter.addItem("해운대구 유기동물 입양센터", "051-749-5680","1", "5680", resourceIDtoUri(R.drawable.center_1), "해운대구에 위치한 유기동물 입양센터입니다.")
+        centerAdapter.addItem("용인시 동물 보호센터", "031-324-3463","2", "3463", resourceIDtoUri(R.drawable.center_2), "용인시에 위치한 동물 보호센터입니다.")
+        centerAdapter.addItem("서산시 동물 보호센터", "041-666-2747","3", "2747", resourceIDtoUri(R.drawable.center_3), "서산시에 위치한 동물 보호센터입니다.")
+        centerAdapter.addItem("강릉시 동물 보호센터", "033-641-7515","4", "7515", resourceIDtoUri(R.drawable.center_4), "강릉시에 위치한 동물 보호센터입니다.")
+        centerAdapter.addItem("대전광역시 동물 보호센터", "042-825-1118","5", "1118", resourceIDtoUri(R.drawable.center_5), "대전광역시에 위치한 동물 보호센터입니다.")
+        centerAdapter.addItem("시흥시 동물누리 보호센터", "02-2060-2488","6", "2488", resourceIDtoUri(R.drawable.center_6), "시흥시에 위치한 동물누리 보호센터입니다.")
+        centerAdapter.addItem("당진시 동물 보호소", "041-356-8210","7", "8210", resourceIDtoUri(R.drawable.center_7), "당진시에 위치한 동물 보호소입니다.")
 
         centerAdapter.setFilteredItemList(centerAdapter.centerItemList)
 
@@ -98,6 +108,14 @@ class FragmentD : Fragment() {
 
             val PW: EditText = dialog.findViewById(R.id.centerPW)
             val confirmButton: Button = dialog.findViewById(R.id.btnPW)
+            val centerPicture: ImageView = dialog.findViewById(R.id.centerURI)
+            val centerText: TextView = dialog.findViewById(R.id.centerText)
+
+            centerText.text = profile.centerText
+
+            Glide.with(this@FragmentD)
+                .load(profile.centerURI)
+                .into(centerPicture)
 
             confirmButton.setOnClickListener {
                 val enteredPW = PW.text.toString()
@@ -153,5 +171,8 @@ class FragmentD : Fragment() {
 
             dialog.show()
         }
+    }
+    private fun resourceIDtoUri(resourceId: Int): Uri {
+        return Uri.parse("android.resource://" + "com.example.madcamp_week1_tab1_try" + "/" + resourceId)
     }
 }
