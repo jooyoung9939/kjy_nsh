@@ -45,7 +45,7 @@ class TestFragment : Fragment() {
         answerOption2 = view.findViewById(R.id.answerOption2)
         answerOption3 = view.findViewById(R.id.answerOption3)
         answerOption4 = view.findViewById(R.id.answerOption4)
-        nextButton = view.findViewById(R.id.nextButton)
+        nextButton = view.findViewById(R.id.nextButton1)
     }
 
     private fun setQuestionAndOptions(question: String, option1: String, option2: String, option3: String, option4: String) {

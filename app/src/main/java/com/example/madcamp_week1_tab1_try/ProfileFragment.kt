@@ -45,6 +45,8 @@ class ProfileFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         customAdapter = CustomAdapter(requireContext(), { position ->
+            customAdapter.removeItem(position)
+        },{ position ->
             // 클릭 시 선택된 프로필 저장
             selectedProfile = customAdapter.getItem(position)
             // 다이얼로그 업데이트

@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemLongClickListener
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class CustomAdapter(
     private val context: Context,
+    private val onLongClick: (position: Int) -> (Unit),
     private val onClick: (position: Int) -> (Unit)
 ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     data class Item(val name: String, val num: String, val centerTag: String)
@@ -37,6 +39,12 @@ class CustomAdapter(
         holder.nameItem.text = item.name
         holder.numItem.text = item.num
         Log.d("ckn","결과: $item.name")
+
+        holder.itemView.setOnLongClickListener {
+            onLongClick.invoke(holder.adapterPosition)
+
+            true
+        }
 
         holder.itemView.setOnClickListener {
             onClick.invoke(holder.adapterPosition)

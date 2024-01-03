@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#EBEBEB">
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="90dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Doggy On&amp;On은 강아지에 대한 무한한 사랑을 가진 사람들로 구성된" />
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="행복한 견주 커뮤니티가 형성되기를 기원합니다." />
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="180dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="간단한 테스트를 진행한 후 강아지를 등록해주세요 :)" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="테스트하기" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
