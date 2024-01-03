@@ -139,9 +139,9 @@ class FragmentB : Fragment() {
 
 
     private fun navigateToTestFragment() {
-        val testFragment = TestFragment()
+        val testStartFragment = TestStartFragment()
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container_test, testFragment)
+        transaction.replace(R.id.container_test, testStartFragment)
         transaction.addToBackStack(null)  // 선택 사항: 백 스택에 추가
         transaction.commit()
     }

@@ -54,6 +54,8 @@ class FragmentD : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         customAdapter = CustomAdapter(requireContext(), { position ->
+            customAdapter.removeItem(position)
+        },{ position ->
             // 클릭 시 선택된 프로필 저장
             selectedProfile = customAdapter.getItem(position)
             // 다이얼로그 업데이트
@@ -67,13 +69,13 @@ class FragmentD : Fragment() {
             centerPWDialog()
         })
 
-        centerAdapter.addItem("해운대구 유기동물 입양센터", "051-749-5680","1", "5680", resourceIDtoUri(R.drawable.center_1), "해운대구에 위치한 유기동물 입양센터입니다.")
-        centerAdapter.addItem("용인시 동물 보호센터", "031-324-3463","2", "3463", resourceIDtoUri(R.drawable.center_2), "용인시에 위치한 동물 보호센터입니다.")
-        centerAdapter.addItem("서산시 동물 보호센터", "041-666-2747","3", "2747", resourceIDtoUri(R.drawable.center_3), "서산시에 위치한 동물 보호센터입니다.")
-        centerAdapter.addItem("강릉시 동물 보호센터", "033-641-7515","4", "7515", resourceIDtoUri(R.drawable.center_4), "강릉시에 위치한 동물 보호센터입니다.")
-        centerAdapter.addItem("대전광역시 동물 보호센터", "042-825-1118","5", "1118", resourceIDtoUri(R.drawable.center_5), "대전광역시에 위치한 동물 보호센터입니다.")
-        centerAdapter.addItem("시흥시 동물누리 보호센터", "02-2060-2488","6", "2488", resourceIDtoUri(R.drawable.center_6), "시흥시에 위치한 동물누리 보호센터입니다.")
-        centerAdapter.addItem("당진시 동물 보호소", "041-356-8210","7", "8210", resourceIDtoUri(R.drawable.center_7), "당진시에 위치한 동물 보호소입니다.")
+        centerAdapter.addItem("#1 해운대구 유기동물 입양센터", "051-749-5680","1", "5680", resourceIDtoUri(R.drawable.center_1), "해운대구에 위치한 유기동물 입양센터입니다.")
+        centerAdapter.addItem("#2 용인시 동물 보호센터", "031-324-3463","2", "3463", resourceIDtoUri(R.drawable.center_2), "용인시에 위치한 동물 보호센터입니다.")
+        centerAdapter.addItem("#3 서산시 동물 보호센터", "041-666-2747","3", "2747", resourceIDtoUri(R.drawable.center_3), "서산시에 위치한 동물 보호센터입니다.")
+        centerAdapter.addItem("#4 강릉시 동물 보호센터", "033-641-7515","4", "7515", resourceIDtoUri(R.drawable.center_4), "강릉시에 위치한 동물 보호센터입니다.")
+        centerAdapter.addItem("#5 대전광역시 동물 보호센터", "042-825-1118","5", "1118", resourceIDtoUri(R.drawable.center_5), "대전광역시에 위치한 동물 보호센터입니다.")
+        centerAdapter.addItem("#6 시흥시 동물누리 보호센터", "02-2060-2488","6", "2488", resourceIDtoUri(R.drawable.center_6), "시흥시에 위치한 동물누리 보호센터입니다.")
+        centerAdapter.addItem("#7 당진시 동물 보호소", "041-356-8210","7", "8210", resourceIDtoUri(R.drawable.center_7), "당진시에 위치한 동물 보호소입니다.")
 
         centerAdapter.setFilteredItemList(centerAdapter.centerItemList)
 
