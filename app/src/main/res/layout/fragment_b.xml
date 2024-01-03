@@ -8,11 +8,12 @@
     tools:context=".FragmentB">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:gravity="center_vertical">
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_horizontal">
         <TextView
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="25dp"
@@ -27,16 +28,16 @@
                 android:id="@+id/postBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:text="글쓰기"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
     </LinearLayout>
     <EditText
         android:id="@+id/post_search_bar"
-        android:layout_width="350dp"
-        android:layout_marginTop="62.5dp"
+        android:layout_width="320dp"
+        android:layout_marginTop="52.5dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="  제목"
@@ -46,21 +47,51 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postRecyclerView"
         tools:listitem="@layout/post_item"
-        android:layout_width="360dp"
-        android:layout_height="440dp"
-        android:layout_marginTop="120dp"
+        android:layout_width="320dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="110dp"
         android:layout_gravity="center_horizontal"
         android:paddingTop="5dp"
         android:background="@drawable/item_background"/>
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="465dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/item_background">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10명 중 6명은 이 앱을 통해"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="잃어버렸던 강아지를 찾았습니다."
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여러분도 얼른 강아지를 등록하세요!"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/testBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="240dp"
-            android:text="입양하기"
-            android:textSize="20sp" />
+            android:text="등록하기"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/container_test"
