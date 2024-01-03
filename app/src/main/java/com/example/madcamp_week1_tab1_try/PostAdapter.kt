@@ -18,7 +18,8 @@ class PostAdapter(
     private var filteredPostItemList = ArrayList<postItem>()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nameItem: TextView = view.findViewById(R.id.postTitleItem)
+        val titleItem: TextView = view.findViewById(R.id.postTitleItem)
+        val textItem: TextView = view.findViewById(R.id.postTextItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +32,8 @@ class PostAdapter(
 
         item = filteredPostItemList[position]
 
-        holder.nameItem.text = item.postTitle
+        holder.titleItem.text = item.postTitle
+        holder.textItem.text = item.postText
 
         holder.itemView.setOnClickListener {
             onClick.invoke(holder.adapterPosition)
