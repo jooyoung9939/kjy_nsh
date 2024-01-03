@@ -133,14 +133,24 @@ class FragmentC : Fragment() {
     inner class MyGridAdapter(private val context: Context) : BaseAdapter() {
 
         val picID = ArrayList<ContactInfo>().apply {
-            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
-            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_2), "뭉치", "1", "잃어버림"))
-            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_3), "뭉치", "1", "잃어버림"))
+            add(ContactInfo("남승훈", "010-1234-3245", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
+            add(ContactInfo("김주영", "010-8897-5634", resourceIDtoUri(context, R.drawable.doggy_2), "춘자", "1", "잃어버림"))
+            add(ContactInfo("조서윤", "010-3577-9654", resourceIDtoUri(context, R.drawable.doggy_3), "해피", "2", "잃어버림"))
+            add(ContactInfo("강승완", "010-7984-9832", resourceIDtoUri(context, R.drawable.doggy_4), "가을이", "3", "잃어버림"))
+            add(ContactInfo("박강태", "010-8974-9531", resourceIDtoUri(context, R.drawable.doggy_5), "겨울이", "1", "잃어버림"))
+            add(ContactInfo("하준학", "010-7777-5621", resourceIDtoUri(context, R.drawable.doggy_6), "햇살이", "2", "잃어버림"))
+            add(ContactInfo("박병찬", "010-3546-8977", resourceIDtoUri(context, R.drawable.doggy_7), "달님이", "2", "잃어버림"))
+
+
         }
         val filtered_picID = ArrayList<ContactInfo>().apply {
-            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
-            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_2), "뭉치", "1", "잃어버림"))
-            add(ContactInfo("남승훈", "1234", resourceIDtoUri(context, R.drawable.doggy_3), "뭉치", "1", "잃어버림"))
+            add(ContactInfo("남승훈", "010-1234-3245", resourceIDtoUri(context, R.drawable.doggy_1), "뭉치", "1", "잃어버림"))
+            add(ContactInfo("김주영", "010-8897-5634", resourceIDtoUri(context, R.drawable.doggy_2), "춘자", "1", "잃어버림"))
+            add(ContactInfo("조서윤", "010-3577-9654", resourceIDtoUri(context, R.drawable.doggy_3), "해피", "2", "잃어버림"))
+            add(ContactInfo("강승완", "010-7984-9832", resourceIDtoUri(context, R.drawable.doggy_4), "가을이", "3", "잃어버림"))
+            add(ContactInfo("박강태", "010-8974-9531", resourceIDtoUri(context, R.drawable.doggy_5), "겨울이", "1", "잃어버림"))
+            add(ContactInfo("하준학", "010-7777-5621", resourceIDtoUri(context, R.drawable.doggy_6), "햇살이", "2", "잃어버림"))
+            add(ContactInfo("박병찬", "010-3546-8977", resourceIDtoUri(context, R.drawable.doggy_7), "달님이", "2", "잃어버림"))
         }
         private fun resourceIDtoUri(context: Context, resourceId: Int): Uri {
             return Uri.parse("android.resource://" + context.packageName + "/" + resourceId)

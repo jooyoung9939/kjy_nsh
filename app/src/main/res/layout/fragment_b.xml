@@ -16,9 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="25dp"
+            android:textSize="23sp"
             android:textStyle="bold"
-            android:text="Doggy 게시판" />
+            android:text="Doggy Community" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

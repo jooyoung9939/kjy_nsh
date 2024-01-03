@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(){
         binding.viewPager.adapter = pagerAdapter
 
         // 탭 메뉴 제목 설정
-        val titles = listOf("주소록", "갤러리", "추가")
+        val titles = listOf("Center", "Gallery", "Community")
 
         // 탭 레이아웃과 뷰페이저 연결
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->

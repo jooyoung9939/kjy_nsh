@@ -65,10 +65,6 @@ class FragmentD : Fragment() {
         centerAdapter.addItem("유기견 보호소 2", "053-471-4274","2", "0000")
         centerAdapter.addItem("유기견 보호소 3", "050-434-7810","3", "9876")
 
-        customAdapter.addItem("조유리", "010-1100-0000","1")
-        customAdapter.addItem("박재범", "010-8292-5237","2")
-        customAdapter.addItem("김채원", "010-8729-7897", "3")
-
         centerAdapter.setFilteredItemList(centerAdapter.centerItemList)
 
         recyclerView.adapter = centerAdapter
